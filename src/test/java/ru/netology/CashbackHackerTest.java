@@ -1,45 +1,38 @@
 package ru.netology;
 
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.Assert.*;
 
-
-class CashbackHackerTest {
+public class CashbackHackerTest {
     CashbackHacker cash = new CashbackHacker();
 
-    // Показывает сколько докупить
+    // Проверка границ
     @Test
-    public void shouldBuyMore() {
-        assertEquals(cash.remain(900), 100);
-
+    public void shouldShowHowMuchToBuy() {
+        assertEquals(1, cash.remain(999));
+        assertEquals(999, cash.remain(1));
     }
 
-    // Показывает сколько докупить
+    //Если пользователь купил ровно на 1000 рублей, то приложение не должно ему говорить, что нужно купить ещё на 1000.
     @Test
-    public void shouldBuyMore1() {
-        assertEquals(cash.remain(850), 150);
+    public void shouldShouHowMushToBy() {
+        assertEquals(0, cash.remain(1000));
+    }
+    // Если сумма круглая , то приложение не должно ему говорить,что нужно купить еще на 1000
+    @Test
+    public void shouldShouHowMushToBy1() {
+        assertEquals(0, cash.remain(2000));
     }
 
-    // Проверка границы
     @Test
-    public void shouldBuyMoreCheckingBorders() {
-        assertEquals(cash.remain(999), 1);
+    public void shouldShouHowMushToBy2() {
+        assertEquals(0, cash.remain(153000));
     }
 
-    //Если сумма 1000+ то он будет предлагать все равно докупить, чтобы округлить сумму до 2000 и тд.
     @Test
-    public void shouldNotBuyMoreCheckingBorder() {
-        assertEquals(cash.remain(1000), 1000);
-        assertEquals(cash.remain(1999), 1);
-        assertEquals(cash.remain(2001), 999);
+    public void shouldShowHowMushToBy3() {
+        assertEquals(1500, cash.remain(-500));
     }
-
-    // Тест на отрицательное значение
-    @Test
-    public void should() {
-        assertEquals(cash.remain(-500), 1500);
-    }
-
 }
