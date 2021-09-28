@@ -1,5 +1,5 @@
 package ru.netology;
-
+//...
 public class CashbackHacker {
 
 
