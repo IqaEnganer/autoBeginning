@@ -28,12 +28,13 @@ class CashbackHackerTest {
         assertEquals(cash.remain(999), 1);
     }
 
-    //Если сумма 1000+ то он будет предлагать все равно докупить, чтобы округлить сумму до 2000 и тд.
+    //Если сумма 1000 то он будет предлагать все равно докупить, чтобы округлить сумму до 2000 и тд.
     @Test
     public void shouldNotBuyMoreCheckingBorder() {
+        assertEquals(cash.remain(1000),0);
         assertEquals(cash.remain(1000), 1000);
-        assertEquals(cash.remain(1999), 1);
-        assertEquals(cash.remain(2001), 999);
+        assertEquals(cash.remain(2000), 1000);
+
     }
 
     // Тест на отрицательное значение
